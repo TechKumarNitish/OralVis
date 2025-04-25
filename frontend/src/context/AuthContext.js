@@ -63,12 +63,10 @@ export const AuthProvider = ({ children }) => {
     try {
       console.log("registering..")
       const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/register`, userData);
-      const { token, data } = response.data;
-      
-      localStorage.setItem('token', token);
+      const { token } = response.data;
+    
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-      setUser(data.user);
-      localStorage.setItem('user', JSON.stringify(data.user));
+     
       toast.success('Registration successful!');
       return true;
     } catch (error) {
