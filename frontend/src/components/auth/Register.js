@@ -1,29 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import Cookies from 'js-cookie';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Register = () => {
   const navigate = useNavigate();
-  const { user, fetchUserProfile } = useAuth();
+ 
 
-   // If token exists and user is not logged in, fetch user profile
-   const token = Cookies.get("token");
 
-   if (token && !user) {
-     // Fetch the user's profile if token exists and user is not logged in
-     fetchUserProfile();
-   }
-
-   // If user is already logged in, redirect to the appropriate dashboard
-   if (user) {
-     if (user.role === "patient") {
-       navigate("/patient/dashboard");
-     } else if (user.role === "dentist") {
-       navigate("/dentist/dashboard");
-     }
-   }
 
   const [formData, setFormData] = useState({
     name: '',
@@ -37,6 +21,7 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const { register } = useAuth();
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -97,7 +82,7 @@ const Register = () => {
         console.log("registering..");
         const success = await register(formData);
         if (success) {
-          navigate('/login');
+          navigate('/');
         }
       } catch (error) {
         setErrors({ ...errors, api: error.message });

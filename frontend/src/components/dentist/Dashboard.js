@@ -15,7 +15,7 @@ const Dashboard = () => {
     const fetchStats = async () => {
       try {
         const token = Cookies.get('token'); 
-        const response = await fetch('http://localhost:5000/api/dentists/stats', {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/dentists/stats`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }

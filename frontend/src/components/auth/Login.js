@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import Cookies from 'js-cookie';
+
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Login = () => {
@@ -9,33 +9,19 @@ const Login = () => {
 
 
   const navigate = useNavigate();
-  const { user, fetchUserProfile } = useAuth();
+  const { user} = useAuth();
+ 
 
+  // If token exists and user is not logged in, fetch user profile
 
-   // If token exists and user is not logged in, fetch user profile
-   const token = Cookies.get("token");
-
-   if (token && !user) {
-     // Fetch the user's profile if token exists and user is not logged in
-     fetchUserProfile();
-   }
-
-   // If user is already logged in, redirect to the appropriate dashboard
-   if (user) {
-     if (user.role === "patient") {
-       navigate("/patient/dashboard");
-     } else if (user.role === "dentist") {
-       navigate("/dentist/dashboard");
-     }
-   }
-  
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
-  const { login } = useAuth();
+  const { login } = useAuth(); 
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -67,14 +53,9 @@ const Login = () => {
     e.preventDefault();
     if (validateForm()) {
       const success = await login(formData.email, formData.password);
+      console.log(user);
       if (success) {
-        if (user) {
-          if (user.role === "patient") {
-            navigate("/patient/dashboard");
-          } else if (user.role === "dentist") {
-            navigate("/dentist/dashboard");
-          }
-        }
+        navigate("/"); 
       }
     }
   };
@@ -110,9 +91,8 @@ const Login = () => {
                 type="email"
                 autoComplete="email"
                 required
-                className={`appearance-none rounded-none relative block w-full px-3 py-2 border ${
-                  errors.email ? 'border-red-300' : 'border-gray-300'
-                } placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm`}
+                className={`appearance-none rounded-none relative block w-full px-3 py-2 border ${errors.email ? 'border-red-300' : 'border-gray-300'
+                  } placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm`}
                 placeholder="Email address"
                 value={formData.email}
                 onChange={handleChange}
@@ -131,9 +111,8 @@ const Login = () => {
                 type={showPassword ? "text" : "password"}
                 autoComplete="current-password"
                 required
-                className={`appearance-none rounded-none relative block w-full px-3 py-2 border ${
-                  errors.password ? 'border-red-300' : 'border-gray-300'
-                } placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm`}
+                className={`appearance-none rounded-none relative block w-full px-3 py-2 border ${errors.password ? 'border-red-300' : 'border-gray-300'
+                  } placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm`}
                 placeholder="Password"
                 value={formData.password}
                 onChange={handleChange}
