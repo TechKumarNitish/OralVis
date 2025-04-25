@@ -8,9 +8,7 @@ const Login = () => {
 
 
 
-  const navigate = useNavigate();
-  const { user} = useAuth();
- 
+  const navigate = useNavigate(); 
 
   // If token exists and user is not logged in, fetch user profile
 

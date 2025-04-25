@@ -24,7 +24,7 @@ const upload = multer({ storage: storage });
 router.post('/', protect, restrictTo('patient'), async (req, res) => {
   try {
     const { dentistId, appointmentDate, reason } = req.body;
-    console.log(req.body);
+   
     
     const checkup = await Checkup.create({
       patient: req.user._id,
@@ -45,7 +45,6 @@ router.post('/', protect, restrictTo('patient'), async (req, res) => {
 router.put('/:id', protect, restrictTo('dentist'), async (req, res) => {
   try {
     const { status, additionalNote } = req.body;
-    console.log("req.body",req.body);
     const checkup = await Checkup.findByIdAndUpdate(req.params.id, { status, additionalNote }, { new: true });
     res.status(200).json({
       status: 'success',
@@ -137,11 +136,9 @@ router.post('/:id/image', protect, restrictTo('dentist'),upload.single('image'),
     if(!checkup){
       return res.status(404).json({ message: 'Checkup not found' });
     }
-    console.log("checkup",req.file.filename);
 
     const imageUrl = `/uploads/${req.file.filename}`;
     const { note } = req.body;
-    console.log("note",note);
     const image = new Image({ url: imageUrl, note });
     await image.save({ session });
 
@@ -154,7 +151,6 @@ router.post('/:id/image', protect, restrictTo('dentist'),upload.single('image'),
     res.status(201).json({ message: 'Image uploaded and Checkup updated', image });
 
   }catch(error){
-    console.log("error",error); 
     await session.abortTransaction();
     session.endSession();
     res.status(500).json({ error: error.message });

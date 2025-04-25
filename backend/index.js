@@ -39,7 +39,7 @@ app.use('/api/checkups', require('./routes/checkups'));
 
 // Error handling middleware
 app.use((err, req, res, next) => {
-  console.error(err.stack);
+  
   res.status(500).json({ message: 'Something went wrong!' });
 });
 

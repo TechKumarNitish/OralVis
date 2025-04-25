@@ -39,7 +39,6 @@ router.patch('/profile', protect, restrictTo('dentist'), async (req, res) => {
 // Get dentist's checkup requests
 router.get('/checkups', protect, restrictTo('dentist'), async (req, res) => {
   try {
-    console.log("req.user..",req.user);
     const checkups = await Checkup.find({ dentist: req.user._id })
       .populate('patient', 'name email phoneNumber')
       .sort('-createdAt');
