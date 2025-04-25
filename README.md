@@ -56,13 +56,16 @@ OralVis is a comprehensive dental care management system that connects patients 
 
 ## Setup Instructions
 
-1. **Clone the Repository**
+1. **Access the Deployed Project**
+   - Visit the live application here: **[OralVis Live Demo](https://oralvis.netlify.app/)**
+
+2. **Clone the Repository**
    ```bash
    git clone https://github.com/TechKumarNitish/OralVis.git
    cd OralVis
    ```
 
-2. **Install Dependencies**
+3. **Install Dependencies**
    ```bash
    # Install frontend dependencies
    cd frontend
@@ -73,7 +76,7 @@ OralVis is a comprehensive dental care management system that connects patients 
    npm install
    ```
 
-3. **Environment Setup**
+4. **Environment Setup**
    - Create `.env` file in the backend directory:
      ```
      MONGODB_URI=your_mongodb_uri
@@ -86,7 +89,7 @@ OralVis is a comprehensive dental care management system that connects patients 
      REACT_APP_API_URL=http://localhost:5000
      ```
 
-4. **Start the Application**
+5. **Start the Application**
    ```bash
    # Start backend server
    cd backend
