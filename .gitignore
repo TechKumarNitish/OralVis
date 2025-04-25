@@ -1,0 +1,48 @@
+# Node.js
+node_modules/
+.env
+.env.local
+.env.*.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+dist/
+build/
+
+# Logs
+logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor directories and files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# React
+/build
+/.next
+out/
+.cache/
+*.cache
+
+# Testing
+coverage/
+jest-cache/
+jest-output/
+
+# Static & uploads
+/public/uploads
+/public/temp
+
+# Misc
+*.pem
+*.key
+*.crt
+*.tgz
