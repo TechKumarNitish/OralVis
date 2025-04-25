@@ -6,7 +6,6 @@ import { toast } from "react-toastify";
 
 const ProtectedRoute = ({ children, allowedRoles }) => {
     const token = Cookies.get("token");
-    console.log("token: ", token);
     const { user, fetchUserProfile } = useAuth();
     const [loading, setLoading] = useState(true);
 

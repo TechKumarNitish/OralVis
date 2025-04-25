@@ -47,7 +47,7 @@ export const AuthProvider = ({ children }) => {
       
       Cookies.set('token', token);
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-      console.log(data.user);
+      
       setUser(data.user);
       localStorage.setItem('user', JSON.stringify(data.user));
       
@@ -61,7 +61,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (userData) => {
     try {
-      console.log("registering..")
+      
       const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/register`, userData);
       const { token } = response.data;
     

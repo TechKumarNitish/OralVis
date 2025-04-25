@@ -28,7 +28,6 @@ const CheckupRequest = () => {
         const data = await response.json();
         setDentists(data.data.dentists);
       } catch (error) {
-        console.error('Error fetching dentists:', error);
       } finally {
         setLoading(false);
       }
@@ -73,7 +72,6 @@ const CheckupRequest = () => {
           },
           body: JSON.stringify(formData)
         };
-        console.log(options);
         await fetch (`${process.env.REACT_APP_API_URL}/api/checkups`, options);
         toast.success('Checkup request submitted successfully');
         navigate('/checkup/history');

@@ -79,7 +79,6 @@ const Register = () => {
     if (validateForm()) {
       setIsSubmitting(true);
       try {
-        console.log("registering..");
         const success = await register(formData);
         if (success) {
           navigate('/');

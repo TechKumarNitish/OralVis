@@ -21,7 +21,6 @@ const DentistList = () => {
         const data = await response.json();
         setDentists(data.data.dentists);
       } catch (error) {
-        console.error('Error fetching dentists:', error);
       } finally {
         setLoading(false);
       }

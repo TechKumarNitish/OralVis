@@ -23,7 +23,6 @@ const CheckupHistory = (props) => {
         setCheckups(data.data.checkups);
       } catch (error) {
         toast.error('Something went wrong');
-        console.error('Error fetching checkups:', error);
       } finally {
         setLoading(false);
       }

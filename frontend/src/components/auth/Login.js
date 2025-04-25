@@ -53,7 +53,7 @@ const Login = () => {
     e.preventDefault();
     if (validateForm()) {
       const success = await login(formData.email, formData.password);
-      console.log(user);
+   
       if (success) {
         navigate("/"); 
       }

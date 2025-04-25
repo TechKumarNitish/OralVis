@@ -21,7 +21,6 @@ const Dashboard = () => {
         setRecentCheckups(data.data.checkups.slice(0, 5));
       } catch (error) {
         toast.error('Something went wrong');
-        console.error('Error fetching checkups:', error);
       } finally {
         setLoading(false);
       }

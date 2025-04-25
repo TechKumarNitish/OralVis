@@ -28,7 +28,6 @@ const CheckupDetails = () => {
         setCheckup(data.checkup);
       } catch (error) {
         setError('Failed to fetch checkup details');
-        console.error('Error fetching checkup details:', error);
       } finally {
         setLoading(false);
       }

@@ -23,7 +23,6 @@ const Dashboard = () => {
         const data = await response.json();
         setStats(data.data.stats);
       } catch (error) {
-        console.error('Error fetching stats:', error);
       } finally {
         setLoading(false);
       }

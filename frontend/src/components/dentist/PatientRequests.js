@@ -21,7 +21,6 @@ const PatientRequests = () => {
         const data = await response.json();
         setRequests(data.data.checkups);
       } catch (error) {
-        console.error('Error fetching requests:', error);
       } finally {
         setLoading(false);
       }

@@ -31,18 +31,15 @@ const CheckupUpdate = () => {
         };
         const response = await fetch(`${process.env.REACT_APP_API_URL}/api/checkups/${id}`, options);
         const data = await response.json();
-        console.log("data",data);
+        
         setImages(data.checkup.images); 
-        console.log("images",images);
-        console.log("checkup",data.checkup.additionalNote);
         setCheckup(data.checkup);
         setFormData({
           status: data.checkup.status,
           additionalNote: data.checkup.additionalNote || ''
         });
       } catch (error) {
-        setError('Failed to fetch checkup details');
-        console.error('Error fetching checkup details:', error);
+        setError('Failed to fetch checkup details');;
       } finally {
         setLoading(false);
       }
@@ -105,7 +102,6 @@ const CheckupUpdate = () => {
       if (fileInput) fileInput.value = '';
 
     } catch (error) {
-      console.error('Error uploading photo:', error);
       toast.error('Something went wrong');
     }
   };
@@ -129,7 +125,6 @@ const CheckupUpdate = () => {
       setImages(prev=>prev.filter((photo)=>photo._id  !==photoId));
       toast.success('Photo deleted successfully');
     } catch (error) {
-      console.error('Error deleting photo:', error);
       toast.error('Something went wrong');
     }
   };
@@ -155,7 +150,6 @@ const CheckupUpdate = () => {
       navigate(`/dentist/requests`);
       toast.success('Checkup updated successfully');
     } catch (error) {
-      console.error('Error updating checkup:', error);
       toast.error('Something went wrong');
     }
   };
